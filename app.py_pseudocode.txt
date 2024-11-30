@@ -1,0 +1,52 @@
+app.py (Backend)
+Import necessary libraries:
+
+Import os, requests, Flask, render_template, request, jsonify, matplotlib.pyplot, io, and base64.
+Create a Flask App instance (app)
+
+Define a list of available cryptocurrencies (crypto_list):
+
+Example:
+python
+Copy code
+crypto_list = ['bitcoin', 'ethereum', 'litecoin', 'dogecoin']
+Define Route for the Main Page (/):
+
+Route Method: GET and POST
+Default values for selected cryptocurrency and time period:
+python
+Copy code
+selected_crypto = 'bitcoin'  # Default cryptocurrency
+time_period = '12h'  # Default time period
+plot_img = None  # No plot initially
+If request method is POST:
+Retrieve crypto_symbol and time_period from the form.
+Call fetch_crypto_data() to get the historical data for the selected cryptocurrency.
+Call create_crypto_plot() to generate the plot and return it as base64-encoded image data.
+Return HTML template with selected values and plot image:
+python
+Copy code
+return render_template('index.html', crypto_list=crypto_list, selected_crypto=selected_crypto, time_period=time_period, plot_img=plot_img)
+Define a function to fetch cryptocurrency data (fetch_crypto_data):
+
+Fetch historical price data using the CoinGecko API.
+Parameters: crypto_symbol and time_period.
+Return price data in a list of timestamp-price pairs.
+Handle API errors gracefully by returning an empty list if the request fails.
+Define a function to generate a cryptocurrency price plot (create_crypto_plot):
+
+Create a plot using matplotlib with timestamps on the X-axis and prices on the Y-axis.
+Save the plot as a PNG image in a BytesIO object.
+Encode the image as base64 to embed it in the HTML template.
+Define a Route to fetch real-time cryptocurrency prices (/get_real_time_price):
+
+Method: GET
+Fetch real-time price using the CoinGecko API.
+Return the current price in a JSON response.
+Define a function to fetch real-time prices (fetch_real_time_price):
+
+Fetch the real-time price of a cryptocurrency using the CoinGecko API.
+Handle API errors gracefully by returning 0.0 if the request fails.
+Run the Flask app:
+
+Start the application with app.run(debug=True).
