@@ -1,0 +1,37 @@
+index.html (Frontend)
+HTML structure:
+
+Define the document structure with <html>, <head>, and <body>.
+Include meta tags and title:
+
+Meta charset and viewport for responsiveness.
+Title for the webpage: <title>Crypto Trader</title>.
+Include jQuery for AJAX requests:
+
+Add <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>.
+Styling:
+
+Add basic CSS to style the page (fonts, form elements, buttons, and layout).
+Display title:
+
+<h1>Crypto Trader</h1>.
+Create a form to select cryptocurrency and time period:
+
+Use <select> elements to choose a cryptocurrency and a time period.
+Dynamically populate the cryptocurrency options using the crypto_list passed from Flask.
+Use if statements to select the default values (e.g., bitcoin and 12h).
+Add submit button:
+
+Use a <button> to allow users to submit the form.
+Display the generated cryptocurrency graph:
+
+If a plot image (plot_img) is returned from Flask, embed it in an <img> element using base64 encoding:
+html
+Copy code
+<img src="data:image/png;base64,{{ plot_img }}" alt="Cryptocurrency Graph">
+Add AJAX script to handle form submission:
+
+Prevent page reload on form submit.
+Capture selected cryptocurrency and time period values.
+Use $.post() to send the data to the Flask backend (/), and replace the page's content with the response.
+Update the page dynamically with the new graph and price.
